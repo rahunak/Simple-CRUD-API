@@ -1,0 +1,36 @@
+{
+  "name": "simple crup api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
+    "start:prod": "webpack --config prod.config.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "CRUD",
+    "nodejs",
+    "node-js",
+    "javascript",
+    "rsschool"
+  ],
+  "author": "rahunak <66bratz@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv-webpack": "^8.0.1",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2"
+  },
+  "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.6.0",
+    "nodemon": "^3.0.3",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
