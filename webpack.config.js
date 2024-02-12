@@ -5,7 +5,7 @@ import { prodConfig } from './webpack.prod.config';
 
 const config = {
   target: 'node',
-  entry: './src/server.js',
+  entry: './src/server_app.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',

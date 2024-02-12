@@ -2,7 +2,7 @@
   "name": "Simple CRUD-Api",
   "version": "1.0.0",
   "description": "nodejs crud api rsschool",
-  "main": "src/server.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
@@ -34,6 +34,7 @@
     "dotenv": "^16.4.2",
     "dotenv-webpack": "^8.0.1",
     "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-standard-with-typescript": "^43.0.1",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^16.6.2",
