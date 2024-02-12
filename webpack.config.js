@@ -1,41 +1,48 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+import path from 'path';
+import { Configuration } from 'webpack';
+import { devConfig } from './webpack.dev.config';
+import { prodConfig } from './webpack.prod.config';
 
-module.exports = (env, argv) => {
-    const isDevMode = argv.mode === 'development';
+const config = {
+  target: 'node',
+  entry: './src/server.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
 
+  resolve: {    extensions: ['.ts', '.js'],
+  },
+  module: {
+    rules: [ 
+      {
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        type: 'asset',
+      },
+      {
+        test: /\.(ts|tsx)$/i,
+        loader: 'ts-loader',
+        exclude: ['/node_modules/'],
+      },
+
+    ],
+  },
+};
+
+export default (env: any, argv: Configuration): Configuration => {
+  if (argv.mode === 'dev') {
     return {
-        entry: './src/index.js',
-        output: {
-            path: path.resolve(__dirname, 'dist'),
-            filename: isDevMode ? '[name].bundle.js' : '[name].[contenthash].bundle.js',
-            clean: true,
-        },
-        mode: argv.mode,
-        devtool: isDevMode ? 'inline-source-map' : false,
-        devServer: {
-            contentBase: './dist',
-        },
-        plugins: [
-            new HtmlWebpackPlugin({
-                template: './src/index.html',
-            }),
-            new Dotenv({
-                path: isDevMode ? './.env.dev' : './.env.prod',
-            }),
-        ],
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    use: {
-                        loader: 'babel-loader',
-                    },
-                },
-            ],
-        },
+      ...config,
+      ...devConfig,
     };
+  }
+
+  if (argv.mode === 'prod') {
+    return {
+      ...config,
+      ...prodConfig,
+    };
+  }
+
+  return config;
 };
