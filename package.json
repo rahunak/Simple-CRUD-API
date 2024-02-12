@@ -2,11 +2,10 @@
   "name": "Simple CRUD-Api",
   "version": "1.0.0",
   "description": "nodejs crud api rsschool",
-  "main": "index.js",
-  "type": "module",
+  "main": "index.ts",
   "scripts": {
-    "start": "node src/index.js",
-    "start:dev": "cross-env NODE_ENV=dev npx nodemon",
+    "start": "node src/index.ts",
+    "start:dev": "npx ts-node src/server_app.ts",
     "start:prod": "cross-env NODE_ENV=prod npm run build && npm run start",
     "build": "webpack",
     "lint": "eslint src"
