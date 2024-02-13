@@ -8,6 +8,12 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "rules": {
+    
+    "rules": {    
+           "brace-style": ["error", "stroustrup"],
+           "@typescript-eslint/brace-style": ["error", "stroustrup"],
+           "indent":["error", 2],
+           "@typescript-eslint/indent": ["error", 2]
+       
     }
 }

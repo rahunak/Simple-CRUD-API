@@ -46,7 +46,7 @@ function serverHandler (request: IncomingMessage, response: ServerResponse): voi
         break
     }
   } catch (err) {
-    console.log('serverHandler:', err)
+    console.log('error - serverHandler:', err)
     sendResponse(500, 'Internal server error', response)
   }
 }

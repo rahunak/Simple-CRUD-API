@@ -1,6 +1,7 @@
 import { type ServerResponse, type IncomingMessage } from 'http'
 interface IUser {
-  id: string
+  id: number
+  db_userID: string
   name: string
   age: number
   hobbies: string[]

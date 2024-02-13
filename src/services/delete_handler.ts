@@ -1,5 +1,5 @@
 function deleteHandler (request, response) {
-  console.log('request received', request.method)
+  console.log('deleteHandler', request.url)
 
   response.end('Hello world!')
 }

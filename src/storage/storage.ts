@@ -3,7 +3,7 @@ import { type IUser } from '../interfaces/interfaces'
 
 const storage: IUser[] = [
   {
-    id: uuidv4(), name: 'Maksim Znak', age: 30, hobbies: ['BOXING', 'Myau Thai', 'Rugby']
+    id: 1, db_userID: uuidv4(), name: 'Maksim Znak', age: 30, hobbies: ['BOXING', 'Myau Thai', 'Rugby']
   }
 ]
 export default storage
