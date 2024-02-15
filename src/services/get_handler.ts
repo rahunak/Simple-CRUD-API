@@ -18,7 +18,6 @@ function getHandler (request: IncomingMessage, response: ServerResponse): void {
     }
     const user = storage.find((user) => user.id === +Id[0])
     if (user) {
-      console.log('yes', Id)
       sendResponse(200, JSON.stringify(user), response)
     }
     else {
