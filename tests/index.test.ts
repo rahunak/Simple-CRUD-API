@@ -26,3 +26,17 @@ const expectedID = 1;
        expect(response.text).toBe( 'Bad request - user id is invalid');
   });
 });
+
+describe('simple tests on POST api/users', () => {
+  let newUser = {"username":"Mikola Statkevich","age":67,"hobbies":["Honor of Belarus"]}
+  test('should return create new user', async() => {
+     const response = await supertest(serverHandler).post(`/api/users`).send(newUser);
+      expect(response.status).toBe(201);
+      let responseData = JSON.parse(response.text)
+      expect(responseData).toHaveProperty('id')
+      expect(responseData).toHaveProperty('username',"Mikola Statkevich");
+      
+      dataForNextTest = responseData.id;
+  });
+
+});

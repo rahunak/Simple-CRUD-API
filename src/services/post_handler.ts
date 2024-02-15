@@ -55,7 +55,7 @@ export async function postHandler<T extends IUser> (request: IncomingMessage, re
       }
       const userWithId = addIdParameter(user)
       storage.push(userWithId)
-      sendResponse(201, 'User was created', response)
+      sendResponse(201, JSON.stringify(userWithId), response)
     }
     else {
       response.writeHead(404, { 'Content-Type': 'application/json' })
