@@ -35,18 +35,32 @@ export function userValidate (user: IUser): boolean {
   return false
 }
 export function addIdParameter (user: IUser): IUser {
-  return { ...user, id: storage.length + 1, db_userID: uuidv4() }
+  return { ...user, id: storage.length + 1, DataBaseUserID: uuidv4() }
 }
 export async function postHandler<T extends IUser> (request: IncomingMessage, response: ServerResponse): Promise<void> {
   try {
-    const user = await requestGetter(request, response)
-    if (!userValidate(user)) {
-      sendResponse(400, 'Bad request - no username, age or hobbies', response)
+    const { url, method } = request
+    if (
+      url === undefined || method === undefined ||
+      url === null || method === null) {
+      sendResponse(400, 'postHandler - Bad request \n method:' + method + '\n url:' + url, response)
       return
     }
-    const userWithId = addIdParameter(user)
-    storage.push(userWithId)
-    sendResponse(201, 'User was created', response)
+
+    if (url.startsWith('/api/users')) {
+      const user = await requestGetter(request, response)
+      if (!userValidate(user)) {
+        sendResponse(400, 'Bad request - no username, age or hobbies', response)
+        return
+      }
+      const userWithId = addIdParameter(user)
+      storage.push(userWithId)
+      sendResponse(201, 'User was created', response)
+    }
+    else {
+      response.writeHead(404, { 'Content-Type': 'application/json' })
+      response.end(JSON.stringify({ message: 'postHandler: Operation failed' }))
+    }
   }
   catch (error) {
     console.log('postHandler - error:', error)

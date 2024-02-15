@@ -25,21 +25,35 @@ function putValidateUser (user: IUser): boolean {
 }
 export async function putHandler (request: IncomingMessage, response: ServerResponse): Promise<void> {
   try {
-    const user = await requestGetter(request, response)
-    if (!userValidate(user)) {
-      sendResponse(400, 'Bad request - no username, age or hobbies', response)
+    const { url, method } = request
+    if (
+      url === undefined || method === undefined ||
+    url === null || method === null) {
+      sendResponse(400, 'putHandler - Bad request \n method:' + method + '\n url:' + url, response)
+      return
     }
+    const urlParams = url.slice(1).split('/')
+    if (urlParams.length === 3 && (url).startsWith('/api/users')) {
+      const user = await requestGetter(request, response)
+      if (!userValidate(user)) {
+        sendResponse(400, 'Bad request - no username, age or hobbies', response)
+      }
 
-    if (!putValidateUser(user)) {
-      sendResponse(400, 'Bad request - userId is invalid', response)
-    }
+      if (!putValidateUser(user)) {
+        sendResponse(400, 'Bad request - userId is invalid', response)
+      }
 
-    if (isStorageContainsRecord(user)) {
-      const userWithId = userUpdate(user)
-      sendResponse(200, 'User updated', response)
+      if (isStorageContainsRecord(user)) {
+        const userWithId = userUpdate(user)
+        sendResponse(200, 'User updated', response)
+      }
+      else {
+        sendResponse(404, 'user id doesn\'t exist', response)
+      }
     }
     else {
-      sendResponse(404, 'user id doesn\'t exist', response)
+      response.writeHead(404, { 'Content-Type': 'application/json' })
+      response.end(JSON.stringify({ message: 'putHandler: Operation failed' }))
     }
   }
   catch (error) {
