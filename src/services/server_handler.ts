@@ -41,7 +41,7 @@ function serverHandler (request: IncomingMessage, response: ServerResponse): voi
         putHandler(request, response)
         break
       case 'DELETE':
-      // deleteHandler(request, response)
+        deleteHandler(request, response)
         break
       default:
         break

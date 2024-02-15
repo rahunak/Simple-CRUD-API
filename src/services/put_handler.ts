@@ -36,10 +36,10 @@ export async function putHandler (request: IncomingMessage, response: ServerResp
 
     if (isStorageContainsRecord(user)) {
       const userWithId = userUpdate(user)
-      sendResponse(200, JSON.stringify(userWithId), response)
+      sendResponse(200, 'User updated', response)
     }
     else {
-      sendResponse(404, JSON.stringify({ message: 'user id doesn\'t exist' }), response)
+      sendResponse(404, 'user id doesn\'t exist', response)
     }
   }
   catch (error) {

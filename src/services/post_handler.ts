@@ -46,7 +46,7 @@ export async function postHandler<T extends IUser> (request: IncomingMessage, re
     }
     const userWithId = addIdParameter(user)
     storage.push(userWithId)
-    sendResponse(201, 'Created', response)
+    sendResponse(201, 'User was created', response)
   }
   catch (error) {
     console.log('postHandler - error:', error)
