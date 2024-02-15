@@ -1,0 +1,18 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "standard-with-typescript",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    
+    "rules": {    
+           "brace-style": ["error", "stroustrup"],
+           "@typescript-eslint/brace-style": ["error", "stroustrup"],
+           "@typescript-eslint/indent": ["error", 2]
+       
+    }
+}
