@@ -4,7 +4,6 @@ import getHandler from './get_handler'
 import { postHandler } from './post_handler'
 import { putHandler } from './put_handler'
 import deleteHandler from './delete_handler'
-import { IDialog } from '../interfaces/interfaces'
 
 function serverHandler (request: IncomingMessage, response: ServerResponse): void {
   response.setHeader('Access-Control-Allow-Origin', '*')

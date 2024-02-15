@@ -18,7 +18,7 @@ function getHandler (request: IncomingMessage, response: ServerResponse): void {
     }
     const user = storage.find((user) => user.id === +Id[0])
     if (user) {
-      sendResponse(200, 'Your user:\n' + JSON.stringify(user, null, 4), response)
+      sendResponse(200, JSON.stringify(user, null, 4), response)
     }
     else {
       sendResponse(404, 'getHandler: user id doesn\'t exist or Not Found', response)

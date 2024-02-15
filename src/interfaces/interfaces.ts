@@ -1,4 +1,3 @@
-import { type ServerResponse, type IncomingMessage } from 'http'
 interface IUser {
   id: number
   DataBaseUserID: string
@@ -6,9 +5,5 @@ interface IUser {
   age: number
   hobbies: string[]
 }
-interface IDialog {
-  request: IncomingMessage
-  response: ServerResponse
-}
 
-export type { IUser, IDialog }
+export type { IUser }
