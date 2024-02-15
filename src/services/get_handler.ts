@@ -25,7 +25,7 @@ function getHandler (request: IncomingMessage, response: ServerResponse): void {
     }
   }
   else if (urlParams.length === 2 && url.trim() === '/api/users') {
-    sendResponse(200, JSON.stringify(storage,null,4), response)
+    sendResponse(200, JSON.stringify(storage, null, 4), response)
   }
   else {
     response.writeHead(404, { 'Content-Type': 'application/json' })

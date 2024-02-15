@@ -2,7 +2,7 @@ import { type IncomingMessage, type ServerResponse } from 'http'
 import { sendResponse } from '../services/send_response'
 import getHandler from './get_handler'
 import { postHandler } from './post_handler'
-import putHandler from './put_handler'
+import { putHandler } from './put_handler'
 import deleteHandler from './delete_handler'
 import { IDialog } from '../interfaces/interfaces'
 
@@ -16,7 +16,7 @@ function serverHandler (request: IncomingMessage, response: ServerResponse): voi
 
   try {
     const { method, url } = request
-    console.log('serverHandler\n url', url, 'method', method)
+
     if (method === 'OPTIONS') {
       response.writeHead(200)
       response.end()
@@ -25,7 +25,7 @@ function serverHandler (request: IncomingMessage, response: ServerResponse): voi
 
     if (url === undefined || method === undefined ||
       url === null || method === null) {
-      console.log('Bad request\n url', url, 'method', method)
+      console.log('serverHandler - Bad request\n url:', url, '\nmethod:', method)
       sendResponse(400, 'Bad request', response)
       return
     }
@@ -38,7 +38,7 @@ function serverHandler (request: IncomingMessage, response: ServerResponse): voi
         postHandler(request, response)
         break
       case 'PUT':
-      // putHandler(request, response)
+        putHandler(request, response)
         break
       case 'DELETE':
       // deleteHandler(request, response)
